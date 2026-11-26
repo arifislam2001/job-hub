@@ -38,7 +38,7 @@ export default function JobCard({ job }: { job: Job }) {
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 <Link
-                  href={`/jobs/${job.id}`}
+                 href={`/jobs/${job.id ?? (job as any)._id}`}
                   className="font-semibold text-slate-900 after:absolute after:inset-0 group-hover:text-indigo-600"
                 >
                   {job.title}

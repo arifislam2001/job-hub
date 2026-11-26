@@ -1,9 +1,32 @@
 import Link from "next/link";
 
 const columns = [
-  { title: "Job seekers", items: ["Browse jobs", "Companies", "Saved jobs", "My applications"] },
-  { title: "Employers", items: ["Post a job", "Dashboard", "Pricing"] },
-  { title: "Company", items: ["About", "Contact", "Privacy", "Terms"] },
+  {
+    title: "Job seekers",
+    items: [
+      { label: "Browse jobs", href: "/" },
+      { label: "Companies", href: "/companies" },
+      { label: "Saved jobs", href: "/saved" },
+      { label: "My applications", href: "/applications" },
+    ],
+  },
+  {
+    title: "Employers",
+    items: [
+      { label: "Post a job", href: "/post-job" },
+      { label: "Dashboard", href: "/dashboard" },
+      { label: "Pricing", href: "/pricing" },
+    ],
+  },
+  {
+    title: "Company",
+    items: [
+      { label: "About", href: "/about" },
+      { label: "Contact", href: "/contact" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
+    ],
+  },
 ];
 
 export default function Footer() {
@@ -27,9 +50,9 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-slate-900">{c.title}</h4>
             <ul className="mt-4 space-y-2.5">
               {c.items.map((i) => (
-                <li key={i}>
-                  <Link href="#" className="text-sm text-slate-500 transition hover:text-indigo-600">
-                    {i}
+                <li key={i.label}>
+                  <Link href={i.href} className="text-sm text-slate-500 transition hover:text-indigo-600">
+                    {i.label}
                   </Link>
                 </li>
               ))}

@@ -17,6 +17,11 @@ export default function Navbar() {
   const router = useRouter();
   const { user, ready, logout } = useAuth();
 
+  // "Post a job" শুধু company বা লগআউট ইউজারকে দেখাবে (seeker-কে না)
+  const visibleLinks = links.filter(
+    (l) => l.href !== "/post-job" || !user || user.role === "company"
+  );
+
   const isActive = (href: string) =>
     href === "/"
       ? pathname === "/" || pathname.startsWith("/jobs")
@@ -41,7 +46,7 @@ export default function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
-          {links.map((l) => (
+          {visibleLinks.map((l) => (
             <Link
               key={l.label}
               href={l.href}
@@ -109,7 +114,7 @@ export default function Navbar() {
       {open && (
         <div className="border-t border-slate-200 bg-white px-6 py-4 md:hidden">
           <nav className="flex flex-col gap-1">
-            {links.map((l) => (
+            {visibleLinks.map((l) => (
               <Link
                 key={l.label}
                 href={l.href}
